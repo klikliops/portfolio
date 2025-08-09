@@ -5,9 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kliev.'s Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </head>
 <body>
+
+        <div id="loading-overlay">
+            <img src="K.png" alt="Loading Logo" id="loading-logo">
+        </div>
+
+
+
+        <!-- Replace this with your own video file -->
+        <video autoplay muted loop id="bg-video">
+            <source src="BG1.mp4" type="video/mp4">
+        </video>
+ 
+
+
+
+
+<main class="content-container">
+  
   <header>
     <div class="container">
       <nav class="logo">
@@ -19,23 +39,30 @@
         <a href="#contact">Contact</a>
       </nav>
     </div>
+    <section class="transparent-section"></section>
   </header>
+
 
   <section id="hero-logo"class="hero">
     <h1>Klievont S. Señeres</h1>
     <h2>Software Engineer</h2>
-    <p>
-      Hello! I'm Klievont, a passionate developer with a keen eye for creating
-      engaging and functional web experiences. I specialize in front-end
-      development, bringing ideas to life with clean code and intuitive design.
-      Explore my work below to see what I can do!
-    </p>
+    <div class="hero-container">
+    <h3>
+    I Am Into
+    <span class="changing-text"></span>
+   </h3>
+  </div>
     <button>Hire Now</button>
-    <a href="./resume.pdf" class="resume">Resume</a>
+    <div class="social-icons">
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-github"></i></a>
+  </div>
   </section>
 
   <section id="about" class="about">
-    <h2">About Me</h2>
+    <h2>About Me</h2>
     <p>
       I am a dedicated and enthusiastic web developer with a strong foundation
       in HTML, CSS, and JavaScript. My journey into web development began
@@ -53,43 +80,20 @@
   </section>
 
   <section id="projects" class="section-content">
-    <h2>My Projects</h2>
+    <h1 class="my-project">My Projects</h2>
     <div class="projects-grid">
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x250?text=Project+Image+1" alt="Project 1">
-        <h3>Mock Websites</h3>
-        <p>A Mock Websites showcasing my skills and projects, built with HTML and CSS.</p>
-        <a href="#">View Project</a>
+
+      <div class="project-card1">
+        <button class="button">View Project</button>
       </div>
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x250?text=Project+Image+2" alt="Project 2">
-        <h3>Interactive To-Do List</h3>
-        <p>A dynamic to-do application developed using JavaScript, featuring task management.</p>
-        <a href="#">View Project</a>
+
+      <div class="project-card2">
+        <button class="button">View Project</button>
       </div>
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x250?text=Project+Image+3" alt="Project 3">
-        <h3>Responsive Landing Page</h3>
-        <p>A modern, responsive landing page design for a fictional startup, optimized for all devices.</p>
-        <a href="#">View Project</a>
-      </div>
-      <div class="project-card">
-        <img src="https://via.placeholder.com/400x250?text=Project+Image+4" alt="Project 4">
-        <h3>Simple Calculator App</h3>
-        <p>A basic calculator web application, demonstrating fundamental JavaScript logic and UI design.</p>
-        <a href="#">View Project</a>
+      <div class="project-card3">
+        <button class="button">View Project</button>
       </div>
     </div>
-  </section>
-
-  <section id="data-engineering-jobs" class="section-content">
-    <h2>Data Engineering</h2>
-    <p>Data engineering focuses on building and maintaining the infrastructure and systems that collect, store, and process large datasets. This involves creating pipelines, designing databases, and ensuring data quality and accessibility for data scientists and analysts.</p>
-  </section>
-
-  <section id="data-entry-jobs" class="section-content">
-    <h2>Data Entry Jobs</h2>
-    <p>Data entry jobs involve inputting, updating, and maintaining information in various digital formats, such as spreadsheets, databases, and forms. This role requires high accuracy, attention to detail, and often involves tasks like transcription, typing, and record management.</p>
   </section>
 
   <section id="contact" class="section-content">
@@ -106,5 +110,6 @@
   <footer>
     © 2025 Klievont S. Señeres. All rights reserved.
   </footer>
+  </main>
 </body>
 </html>
