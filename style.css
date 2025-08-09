@@ -4,22 +4,283 @@
   margin: 0;
   padding: 0;
 }
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url('./bg.jpg');
-  background-size: cover;
-  color: white;
-  line-height: 1.6;
+
+
+/*----------------------------------------------------------------------------------
+/*
+ * This section defines the video container. It will now take up exactly one-third of the viewport height.
+ * The video inside is absolutely positioned to cover this entire section.
+ * This container will scroll with the rest of the page content.
+ */
+.video-background-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
 }
 
-/* Container for header content */
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/*
+ * This is the section that sits on top of the video and scrolls with the page.
+ */
+.video-overlay {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent; /* Made the overlay transparent for a clearer view of the video */
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+/*
+ * This is the section that comes after the video.
+ * It has a solid background to cover the fixed video background.
+ */
+.solid-background-section {
+    background-color: #0e0d1f; /* A darker, more distinct background to cover the video */
+    padding: 50px;
+    box-sizing: border-box;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* General body styling for the entire page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffe7f1;
+    background-size: 200% 200%;
+    color: #ffe0f8;
+    scroll-behavior: smooth;
+}
+
+
+
+/* Loading Spinner */
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #660566;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 0, 0, 0.712);
+    border-top-color: #4c00ff;
+    border-radius: 500%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*
+ * This class will be added to the main content to hide it initially.
+ * The transition property creates a smooth fade-in effect.
+ */
+.hidden {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+
+/* Loading Spinner */
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/*
+ * This class will be added to the main content to hide it initially.
+ * The transition property creates a smooth fade-in effect.
+ */
+.hidden {
+    opacity: 0;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
+
+/*
+ * This is the section that sits on top of the canvas and scrolls with the page.
+ */
+.video-overlay {
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Changed to column to stack elements */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent; /* Made the overlay transparent for a clearer view of the video */
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+
+/*
+ * This is the section that sits on top of the canvas and scrolls with the page.
+ */
+.video-section {
+    position: relative; /* Establishes a positioning context for the video */
+    width: 100%;
+    height: 33.33vh; /* This is the key: one-third of the viewport height */
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.video-overlay {
+    height: 100%; /* Ensures the overlay fills the video section */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.4); /* A semi-transparent black overlay for better text readability */
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+/*
+ * This is the section that comes after the video.
+ * It has a transparent background, so it will show the body's background color.
+ */
+.transparent-section {
+    background-color: transparent;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Container for header content+++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+/* Loading Spinner */
+/* Styling for the overlay */
+#loading-overlay {
+  position: fixed; /* Stays in the same position even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000; /* Or any background color you prefer */
+  display: flex; /* Centers the logo */
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensures it's on top of other content */
+  opacity: 1;
+  transition: opacity 0.5s ease-out; /* Smooth fade-out effect */
+}
+
+/* Initially hide the overlay */
+#loading-overlay.hidden {
+  opacity: 0;
+  pointer-events: none; /* Allows clicks to pass through when hidden */
+}
+
+/* Styling for the logo */
+#loading-logo {
+  width: 150px; /* Adjust size as needed */
+  height: auto;
+  animation: logo-zoom 30s infinite; /* Applies the animation */
+  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Creates a bouncy effect */
+}
+
+/* Keyframe animation for the zoom effect */
+@keyframes logo-zoom {
+  0% {
+    transform: scale(10); /* Starts at half size */
+  }
+  3% {
+    transform: scale(5); /* Zooms in slightly larger than normal */
+  }
+ 6% {
+    transform: scale(1); /* Ends at its original size */
+  }
+ 10% {
+    transform: scale(0.9) rotate(360deg); /* Ends at its original size */
+}
+ 20% {
+    transform: scale(1) rotate(720deg); /* Ends at its original size */
+} 30% {
+    transform: scale(0.9) rotate(1080deg); /* Ends at its original size */
+} 40% {
+    transform: scale(1) rotate(1440deg); /* Ends at its original size */
+} 50% {
+    transform: scale(0.9) rotate(1700deg); /* Ends at its original size */
+}
+  100% {
+    transform: scale(1) rotate(360deg); /* Ends at its original size */
+  }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* Header styling */
@@ -31,7 +292,7 @@ header {
   z-index: 10;
 }
 section[id] {
-  scroll-margin-top: 60px; /* Adjust this value to be greater than your header's height */
+  scroll-margin-top: 150px; /* Adjust this value to be greater than your header's height */
 }
 
 /* Navigation styling */
@@ -43,7 +304,7 @@ nav {
 }
 nav a {
   text-decoration: none;
-  color: #aaa;
+  color: #dfdfdf;
   font-weight: 500;
   padding: 0.5rem 1rem;
   border-radius: 5px;
@@ -58,7 +319,7 @@ nav .logo {
   border-radius: 5px;
   transition: all 0.3s ease-in-out;
   margin-right: 140px;
-  margin-left: 110px;
+  margin-left: 120px;
 }
 .logo span {
 color:rgb(136, 80, 80);
@@ -79,13 +340,14 @@ nav a:hover {
 
 /* Hero section styling */
 .hero {
-  padding: 6rem 2rem 0.03rem; /* Reduced bottom padding */
-  background-color: #000000ad;
+  padding: 1.5rem 2rem 0.03rem; /* Reduced bottom padding */
+  background-color: #000000f1;
   border-radius: 10px;
   max-width: 800px;
   margin-top: 80px;
   margin-left: 230px;
   margin-right: auto;
+  margin-bottom: 250px;
   text-align: left;
   border: 1px solid #333;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -93,63 +355,110 @@ nav a:hover {
 }
 
 .hero:hover{
-  transform: rotate(360deg);
+  transform: scale(1.01);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 .hero h1 {
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 0.0004rem;
+  color: #ffe7f1;
+  margin-bottom: 1rem;
 }
 .hero h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  margin-bottom: 3rem;
-  color:  #af4d90;
+  margin-bottom: 2rem;
+  color:  #8f3155;
 }
 .hero span{
   font-size: 20px;
+.hero-container {
+  text-align: center;
 }
-.hero p {
-  font-size: 1.2rem;
-  color: #ffffff;
+}
+
+h3 {
+  font-size: 1.3rem;
+  font-weight: bold;
+  white-space: nowrap;
+   margin-bottom: 2rem;
+}
+
+.changing-text {
+  font-weight: bold;
+  color: #8f3155;
+  border-right: 2px solid rgba(0, 0, 0, 0.75);
+  animation: blink-caret 0.75s step-end infinite;
   margin-bottom: 2rem;
+}
+
+/* The typewriter cursor animation */
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #333;
+  }
 }
 .hero button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border: none;
-  border-radius: 6px;
-  background: rgb(255, 164, 217);
+  border-radius: 20px;
+  background: rgb(231, 9, 38);
   color: black;
   cursor: pointer;
   transition: background 0.3s;
   font-family: 'Inter', sans-serif;
-  margin-bottom: 40px;
+  margin-bottom: 1rem;
 }
 .hero button:hover {
   background: #f05fc2;
 }
-.resume{
-  color: white;
-  margin-left: 20px;
-  text-decoration: none;
+.social-icons {
+  display: flex;
+  justify-content: left; /* This centers the icons horizontally */
+  gap: 20px; /* This adds space between each icon */
+  margin-bottom: 1rem;
+}
 
+.social-icons a {
+  color: #fff; /* Sets the icon color to white */
+  font-size: 20px; /* Adjusts the icon size */
+  transition: color 0.3s ease; /* Adds a smooth color transition on hover */
+}
+
+.social-icons a:hover {
+  color: #af4d90; /* Changes the icon color on hover */
 
 }
 
 
 /* --- About Section Specific Styles --- */
 .about {
-  padding: 6rem 2rem 2rem; /* Reduced bottom padding */
+  padding: 2rem 2rem 0.03rem; /* Reduced bottom padding */
+  background-color: #000000c0;
+  border-radius: 10px;
   max-width: 800px;
-  margin-top: 60px;
+  margin-top: 10px;
   margin-left: 230px;
   margin-right: auto;
   text-align: left;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 80px;
+  
 }
+
+.about:hover{
+  transform: scale(1.01);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+
 .about h2 {
-  font-size: 5rem;
+  font-size: 2rem;
   font-weight: 700;
   margin-bottom: 1rem;
 }
@@ -164,37 +473,85 @@ nav a:hover {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
+  gap: 3rem;
+  padding: 2rem 2rem 2rem 1rem;
 
-.project-card {
-  background-color: #050511;
+}
+ .my-project{
+  padding: 2rem 2rem 0.03rem; /* Reduced bottom padding */
+  background-color: transparent;
+  font-size: 2rem;
+  margin-left: 230px;
+  margin-right: auto;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+ }
+
+.project-card1 {
+  background-image: url(./mock.png);
+  background-size: cover;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card2 {
+  background-image: url(./mock1.jpeg);
+  background-size: cover;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card3 {
+  background-image: url(./mock2.png);
+  background-size: cover;
   padding: 1.5rem;
   border-radius: 8px;
   border: 1px solid #333;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.project-card:hover {
+.project-card1:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.project-card h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  color: #fff;
+.project-card2:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.project-card p {
-  font-size: 1rem;
-  color: #bbb;
-  margin-bottom: 1rem;
+.project-card3:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.project-card a {
+.project-card1 button {
   display: inline-block;
   padding: 0.6rem 1.2rem;
+  margin-top: 10rem;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.project-card2 button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  margin-top: 10rem;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.project-card3 button {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  margin-top: 10rem;
   background-color: #333;
   color: white;
   text-decoration: none;
@@ -202,14 +559,8 @@ nav a:hover {
   transition: background-color 0.3s ease;
 }
 
-.project-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-}
 
-.project-card a:hover {
+.project-card button:hover {
   background-color: #555;
 }
 
