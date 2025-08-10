@@ -1,12 +1,118 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+  // === Register the GSAP ScrollTrigger plugin ===
+  gsap.registerPlugin(ScrollTrigger);
+
+  // === Initial Setup ===
+  const loadingOverlay = document.getElementById('loading-overlay');
+  const loadingLogo = document.getElementById('loading-logo');
   const changingText = document.querySelector(".changing-text");
+  
   const phrases = ["Web App Development", "Graphic Design", "UI/UX Design", "Content Creation"];
   let phraseIndex = 0;
   let charIndex = 0;
-  const typingSpeed = 90; // milliseconds per character
-  const deletingSpeed = 50; // milliseconds per character
-  const pauseTime = 1300; // pause before deleting
+  const typingSpeed = 90;
+  const deletingSpeed = 50;
+  const pauseTime = 1300;
 
+  // Set the initial state of elements to be hidden
+  gsap.set("header, .hero h1, .hero h2, .hero-container h3, .hero button, .social-icons a, .about-card, #projects", {
+    y: 50,
+    opacity: 0
+  });
+
+  // === Initial Page Load Animations ===
+  const mainPageTimeline = gsap.timeline({
+    delay: 0.5
+  });
+
+  // 1. Animate the loading logo and overlay
+  if (loadingLogo) {
+    mainPageTimeline.to(loadingLogo, { duration: 1.2, scale: 0.5, opacity: 0, ease: "power2.inOut" });
+  }
+
+  if (loadingOverlay) {
+    mainPageTimeline.to(loadingOverlay, {
+      duration: 1,
+      opacity: 0,
+      ease: "power2.out",
+      onComplete: () => { loadingOverlay.style.display = 'none'; }
+    }, "-=0.5");
+  }
+
+  // 2. Animate the header and hero content on page load
+  mainPageTimeline.to("header", {
+    duration: 1.2,
+    y: 0,
+    opacity: 1,
+    ease: "power2.out"
+  }, ">");
+
+  mainPageTimeline.to(".hero h1, .hero h2", {
+    duration: 0.8,
+    y: 0,
+    opacity: 1,
+    stagger: 0.2,
+    ease: "power2.out"
+  }, "-=0.5");
+
+  mainPageTimeline.to(".hero-container h3, .hero button", {
+    duration: 0.8,
+    y: 0,
+    opacity: 1,
+    stagger: 0.2,
+    ease: "power2.out"
+  }, "-=0.5");
+
+  mainPageTimeline.to(".social-icons a", {
+    duration: 0.6,
+    scale: 1,
+    y: 0,
+    opacity: 1,
+    stagger: 0.1,
+    ease: "back.out(1.7)"
+  }, "-=0.3");
+
+  // 3. Start the typing animation after initial animations
+  mainPageTimeline.call(type, null, "+=0.5");
+
+
+  // === Horizontal Scroll Animation (Updated) ===
+  const horizontalSection = document.querySelector(".horizontal-scroll-section");
+  const scrollContainer = document.querySelector(".horizontal-scroll-container");
+  
+  if (horizontalSection && scrollContainer) {
+    const cards = gsap.utils.toArray('.horizontal-scroll-section > *');
+    const firstCard = cards[0];
+    const lastCard = cards[cards.length - 1];
+
+    // Calculate initial offset to center the first card
+    const firstCardWidth = firstCard.offsetWidth;
+    const startOffset = (scrollContainer.offsetWidth / 2) - (firstCardWidth / 2);
+
+    // Calculate the final scroll position to center the last card
+    const lastCardWidth = lastCard.offsetWidth;
+    const totalWidth = horizontalSection.scrollWidth;
+    const endOffset = (scrollContainer.offsetWidth / 2) - (lastCardWidth / 2);
+    const scrollDistance = totalWidth - scrollContainer.offsetWidth;
+
+    gsap.fromTo(horizontalSection, {
+      x: startOffset
+    }, {
+      x: -(scrollDistance + endOffset),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".about", // Trigger on the entire section
+        start: "center center",
+        pin: true, // Pin the entire section
+        scrub: 1,
+        end: () => "+=" + (scrollDistance + startOffset + endOffset),
+        toggleActions: "play pause resume reset",
+      }
+    });
+  }
+
+  // === Typing Animation Functions (unchanged) ===
   function type() {
     if (charIndex < phrases[phraseIndex].length) {
       changingText.textContent += phrases[phraseIndex].charAt(charIndex);
@@ -25,34 +131,6 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
       phraseIndex = (phraseIndex + 1) % phrases.length;
       setTimeout(type, typingSpeed);
-    }
-  }
-
-  // Start the typing animation
-  setTimeout(type, 500);
-});
-
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  const loadingOverlay = document.getElementById('loading-overlay');
-  const video = document.getElementById('bg-video');
-
-  // Check if the video element exists before proceeding
-  if (video) {
-    // Show the loading overlay initially
-    loadingOverlay.classList.remove('hidden');
-
-    // Add an event listener to the video element
-    video.addEventListener('canplaythrough', () => {
-      // The video is ready to play. Add a short delay to allow the animation to play out.
-      setTimeout(() => {
-        loadingOverlay.classList.add('hidden'); // This adds the CSS class that hides the overlay
-      }, 500); // Wait for 500ms before fading out
-    });
-
-    // This is a failsafe for videos that are already cached and load instantly.
-    if (video.readyState >= 4) { // 4 is the value for have_enough_data
-      loadingOverlay.classList.add('hidden');
     }
   }
 });
