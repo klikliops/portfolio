@@ -6,25 +6,15 @@
   <title>Kliev.'s Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
 
-        <div id="loading-overlay">
-            <img src="K.png" alt="Loading Logo" id="loading-logo">
-        </div>
-
-
-
-        <!-- Replace this with your own video file -->
-        <video autoplay muted loop id="bg-video">
-            <source src="https://drive.google.com/file/d/1v2jmXpQcaUW-bvK9zZLFoQiYA7fWw3ss/view?usp=drive_link" type="video/mp4">
-        </video>
- 
-
-
-
+  <div id="loading-overlay">
+    <img src="K.png" alt="Loading Logo" id="loading-logo">
+  </div>
 
 <main class="content-container">
   
@@ -61,23 +51,38 @@
   </div>
   </section>
 
-  <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>
-      I am a dedicated and enthusiastic web developer with a strong foundation
-      in HTML, CSS, and JavaScript. My journey into web development began
-      with a fascination for how websites are built and a desire to create
-      impactful digital experiences. I enjoy solving complex problems and
-      constantly learning new technologies to improve my craft.
-    </p>
-    <p>
-      Beyond coding, I'm passionate about design principles and user experience,
-      always striving to build interfaces that are not only functional but also
-      visually appealing and easy to navigate. I'm eager to collaborate on
-      innovative projects and contribute to a team that values creativity and
-      technical excellence.
-    </p>
-  </section>
+
+<section id="about" class="about">
+  <h2>About Me</h2>
+  <div class="horizontal-scroll-container">
+    <div class="horizontal-scroll-section">
+      <div class="circle-card">
+        <img src="id.png" alt="Your Name" class="profile-img">
+      </div>
+      
+      <div class="skill-card">
+        <h3>Web Development</h3>
+        <p>Expert in front-end and back-end technologies.</p>
+      </div>
+      <div class="skill-card">
+        <h3>UI/UX Design</h3>
+        <p>Creating intuitive and engaging user interfaces.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Graphic Design</h3>
+        <p>Proficient in Adobe Suite for all visual needs.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Mobile Development</h3>
+        <p>Building cross-platform mobile applications.</p>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud Computing</h3>
+        <p>Experience with AWS, Azure, and Google Cloud.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
   <section id="projects" class="section-content">
     <h1 class="my-project">My Projects</h2>
