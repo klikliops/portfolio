@@ -58,156 +58,12 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #ffe7f1;
+    background: linear-gradient(135deg, #e44242 0%, #ff9e6b 100%);
     background-size: 200% 200%;
     color: #ffe0f8;
     scroll-behavior: smooth;
 }
 
-
-
-/* Loading Spinner */
-#loading-spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #660566;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 0, 0, 0.712);
-    border-top-color: #4c00ff;
-    border-radius: 500%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/*
- * This class will be added to the main content to hide it initially.
- * The transition property creates a smooth fade-in effect.
- */
-.hidden {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-
-/* Loading Spinner */
-#loading-spinner {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #222;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-}
-
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 5px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/*
- * This class will be added to the main content to hide it initially.
- * The transition property creates a smooth fade-in effect.
- */
-.hidden {
-    opacity: 0;
-}
-
-.fade-in {
-    opacity: 1;
-    transition: opacity 1s ease-in-out;
-}
-
-
-/*
- * This is the section that sits on top of the canvas and scrolls with the page.
- */
-.video-overlay {
-    height: 100vh;
-    display: flex;
-    flex-direction: column; /* Changed to column to stack elements */
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: transparent; /* Made the overlay transparent for a clearer view of the video */
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-
-/*
- * This is the section that sits on top of the canvas and scrolls with the page.
- */
-.video-section {
-    position: relative; /* Establishes a positioning context for the video */
-    width: 100%;
-    height: 33.33vh; /* This is the key: one-third of the viewport height */
-    overflow: hidden;
-}
-
-#bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-}
-
-.video-overlay {
-    height: 100%; /* Ensures the overlay fills the video section */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.4); /* A semi-transparent black overlay for better text readability */
-    font-size: 3rem;
-    text-shadow: 2px 2px 4px #000000;
-}
-
-/*
- * This is the section that comes after the video.
- * It has a transparent background, so it will show the body's background color.
- */
-.transparent-section {
-    background-color: transparent;
-    box-sizing: border-box;
-    text-align: center;
-}
 
 /* Container for header content+++++++++++++++++++++++++++++++++++++++++++++++++++ */
 .container {
@@ -220,68 +76,62 @@ body {
 }
 /* Loading Spinner */
 /* Styling for the overlay */
+/* Styling for the overlay */
 #loading-overlay {
-  position: fixed; /* Stays in the same position even when scrolling */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000; /* Or any background color you prefer */
-  display: flex; /* Centers the logo */
+  background-color: #000000;
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensures it's on top of other content */
+  z-index: 9999;
   opacity: 1;
   transition: opacity 0.5s ease-out; /* Smooth fade-out effect */
 }
 
-/* Initially hide the overlay */
+/* This class is what the JavaScript adds to hide the overlay */
 #loading-overlay.hidden {
   opacity: 0;
   pointer-events: none; /* Allows clicks to pass through when hidden */
+  visibility: hidden;
 }
 
 /* Styling for the logo */
 #loading-logo {
-  width: 150px; /* Adjust size as needed */
+  width: 150px;
   height: auto;
-  animation: logo-zoom 30s infinite; /* Applies the animation */
-  animation-timing-function: cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Creates a bouncy effect */
+  animation: logo-fade-in 5s forwards ease-out; /* Shorten animation */
 }
 
-/* Keyframe animation for the zoom effect */
-@keyframes logo-zoom {
+/* New, simpler animation for the logo */
+@keyframes logo-fade-in {
   0% {
-    transform: scale(10); /* Starts at half size */
+    transform: scale(20); /* Starts smaller */
+    opacity: 0; /* Starts hidden */
   }
-  3% {
-    transform: scale(5); /* Zooms in slightly larger than normal */
-  }
- 6% {
-    transform: scale(1); /* Ends at its original size */
-  }
- 10% {
-    transform: scale(0.9) rotate(360deg); /* Ends at its original size */
-}
- 20% {
-    transform: scale(1) rotate(720deg); /* Ends at its original size */
-} 30% {
-    transform: scale(0.9) rotate(1080deg); /* Ends at its original size */
-} 40% {
-    transform: scale(1) rotate(1440deg); /* Ends at its original size */
-} 50% {
-    transform: scale(0.9) rotate(1700deg); /* Ends at its original size */
-}
   100% {
-    transform: scale(1) rotate(360deg); /* Ends at its original size */
+    transform: scale(1); /* Zooms to original size */
+    opacity: 1; /* Ends visible */
   }
 }
 
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
+/* Remove this section, it's a duplicate and is not needed */
+#loading-spinner {
+  display: none; /* Ensure any spinner is hidden to prevent conflicts */
 }
+
+/* --- Rest of your original CSS (unmodified) --- */
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+/* ... The rest of your CSS code ... */
 
 /* Header styling */
 header {
@@ -357,6 +207,7 @@ nav a:hover {
 .hero:hover{
   transform: scale(1.01);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+
 }
 .hero h1 {
   font-size: 3rem;
@@ -436,36 +287,76 @@ h3 {
 
 
 /* --- About Section Specific Styles --- */
+
+/* About Section & Horizontal Scroll Container */
 .about {
-  padding: 2rem 2rem 0.03rem; /* Reduced bottom padding */
-  background-color: #000000c0;
-  border-radius: 10px;
-  max-width: 800px;
-  margin-top: 10px;
-  margin-left: 230px;
-  margin-right: auto;
-  text-align: left;
-  border: 1px solid #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 80px;
-  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
 }
-
-.about:hover{
-  transform: scale(1.01);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
 
 .about h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-.about p {
-  font-size: 1.2rem;
-  color: #ccc;
   margin-bottom: 2rem;
+  color: #ffffff;
+  font-size: 2rem;
+  font-style: bold;
+}
+
+.horizontal-scroll-container {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.horizontal-scroll-section {
+  display: flex;
+  height: 100%;
+  padding: 0 50px;
+
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* Card Styling */
+.circle-card, .skill-card {
+  flex-shrink: 0;
+  background-color: #000000;
+  box-shadow: 0 4px 8px rgba(19, 17, 17, 0.1);
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.circle-card {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #333;
+}
+
+.circle-card .profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skill-card {
+  width: 250px;
+  height: 350px;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 10px 15px rgba(19, 17, 17, 5);
 }
 
 
